@@ -8,6 +8,7 @@ export default storiesOf('Basics', module)
   .add('Button', () => (
     <Container>
       <h2>Default</h2>
+
       <Buttons alignment="left">
         <Button
           onClick={action('clicked')}
@@ -21,6 +22,7 @@ export default storiesOf('Basics', module)
       </Buttons>
 
       <h2>Variant: Primary</h2>
+
       <Buttons alignment="left">
         <Button
           variant="primary"
@@ -33,6 +35,7 @@ export default storiesOf('Basics', module)
       </Buttons>
 
       <h2>Variant: Secondary</h2>
+
       <Buttons alignment="left">
         <Button
           variant="secondary"
@@ -45,6 +48,7 @@ export default storiesOf('Basics', module)
       </Buttons>
 
       <h2>Variant: Outline</h2>
+
       <Buttons alignment="left">
         <Button
           variant="outline"
@@ -57,6 +61,7 @@ export default storiesOf('Basics', module)
       </Buttons>
 
       <h2>Size: big</h2>
+
       <Buttons alignment="left">
         <Button
           size="big"
@@ -70,6 +75,7 @@ export default storiesOf('Basics', module)
       </Buttons>
 
       <h2>Size: full</h2>
+
       <Buttons alignment="left">
         <Button
           size="full"
@@ -83,6 +89,7 @@ export default storiesOf('Basics', module)
       </Buttons>
 
       <h2>Size: fixed</h2>
+
       <Buttons alignment="left">
         <Button
           size="fixed"
