@@ -25,110 +25,6 @@ export const media = {
   desktop: mediaQuery`(min-width: ${VIEWPORT_SIZES.desktop / 16}em)`,
 };
 
-export const fontSize = {
-  h1: css`
-    font-size: 1.875rem;
-    line-height: 2.3125rem;
-    letter-spacing: 0.012rem;
-
-    ${media.tablet`
-        font-size: 2.375rem;
-        line-height: 2.875rem;
-        letter-spacing: 0.011em;
-      `}
-
-    ${media.desktop`
-        font-size: 3rem;
-        line-height: 3.5rem;
-        letter-spacing: .008em;
-      `}
-  `,
-
-  h1Mega: css`
-    font-size: 2.5rem;
-    line-height: 3rem;
-    letter-spacing: 0.011em;
-
-    ${media.tablet`
-        font-size: 3rem;
-        line-height: 3.5625rem;
-        letter-spacing: 0.008em;
-      `}
-
-    ${media.desktop`
-        font-size: 3.75rem;
-        line-height: 4.375rem;
-        letter-spacing: .004em;
-      `}
-  `,
-
-  h2: css`
-    font-size: 1.5rem;
-    line-height: 1.875rem;
-    letter-spacing: 0.015em;
-
-    ${media.tablet`
-        font-size: 1.75rem;
-        line-height: 2.125rem;
-        letter-spacing: 0.013em;
-      `}
-
-    ${media.desktop`
-        font-size: 2.125rem;
-        line-height: 2.5625rem;
-        letter-spacing: .011em;
-      `}
-  `,
-
-  h3: css`
-    font-size: 1.375rem;
-    line-height: 1.75rem;
-    letter-spacing: 0.016em;
-
-    ${media.tablet`
-        font-size: 1.5rem;
-        line-height: 1.875rem;
-        letter-spacing: 0.015em;
-      `}
-
-    ${media.desktop`
-        font-size: 1.625rem;
-        line-height: 2rem;
-        letter-spacing: .014em;
-      `}
-  `,
-
-  body: css`
-    font-size: 1.0625rem;
-    line-height: 1.375rem;
-    letter-spacing: -0.024em;
-
-    ${media.tablet`
-        font-size: 1.125rem;
-        line-height: 1.5rem;
-        letter-spacing: -.02em;
-      `}
-
-    ${media.desktop`
-        font-size: 1.125rem;
-        line-height: 1.5rem;
-        letter-spacing: -.02em;
-      `}
-  `,
-
-  bodySmall: css`
-    font-size: 0.9375rem;
-    line-height: 1.25rem;
-    letter-spacing: -0.15em;
-
-    ${media.desktop`
-        font-size: 1rem;
-        line-height: 1.3125rem;
-        letter-spacing: -.02em;
-      `}
-  `,
-};
-
 export const ButtonReset = styled.button`
   border: 0;
   background-color: transparent;
@@ -154,73 +50,67 @@ const ButtonWrapper = styled(ButtonReset)`
   line-height: 1;
   transition: background 150ms ease;
   white-space: nowrap;
-  min-width: 120px;
   font-size: 1em;
-  min-height: 43px;
-  border-radius: 99px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   position: relative;
-  padding: ${spacing(0.5)} ${spacing(1)};
+  padding: ${spacing(0.825)} ${spacing(1.5)};
 
   &:hover {
-    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.primaryLight};
   }
 
+  > svg {
+    margin-right: ${spacing(0.25)};
+  }
+
+  ${props => console.log}
   ${props =>
     props.variant === 'primary' &&
     css`
       box-shadow: none;
       background: ${({ theme }) => theme.primary};
       color: #fff;
-      padding: ${spacing(0.75)} ${spacing(1.5)};
 
       &:hover {
         background: ${({ theme }) => theme.primaryLight};
+        color: #fff;
+      }
+    `};
+
+  ${props =>
+    props.variant === 'secondary' &&
+    css`
+      box-shadow: none;
+      background: ${({ theme }) => theme.secondary};
+      color: #fff;
+
+      &:hover {
+        background: ${({ theme }) => theme.secondaryLight};
+        color: #fff;
       }
     `};
 
   ${props =>
     props.variant === 'outline' &&
     css`
-      color: ${({ theme }) => theme.textLight};
-      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.textLight};
-      padding: ${spacing(0.5)} ${spacing(1)};
+      color: ${({ theme }) => theme.secondary};
+      box-shadow: inset 0 0 0 2px ${({ theme }) => theme.secondary};
 
       &:hover {
-        color: ${({ theme }) => theme.textLight};
-        background-color: transparent;
-        box-shadow: inset 0 0 0 1px ${({ theme }) => theme.textLight};
+        color: ${({ theme }) => theme.secondaryLight};
+        box-shadow: inset 0 0 0 2px ${({ theme }) => theme.secondaryLight};
       }
     `}
 
   ${props =>
-    props.variant === 'square' &&
+    props.isLoading &&
     css`
-      color: rgba(0, 0, 0, 0.87);
-      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.separator};
-      padding: ${spacing(0.5)} ${spacing(1)};
-      border-radius: 4px;
-      background-color: ${({ theme }) => theme.background};
-
-      svg {
-        font-size: 1.5em;
-      }
-
-      &:hover {
-        background-color: ${({ theme }) => theme.background};
-        color: ${({ theme }) => theme.textLight};
-        box-shadow: inset 0 0 0 1px ${({ theme }) => theme.textLight};
-      }
+      padding-left: ${({ theme }) => theme.spacing(1.5)};
     `}
-
-  > svg {
-    margin-right: ${spacing(0.25)};
-  }
 
   ${props =>
     props.size === 'full' &&
     css`
-      padding: ${spacing(0.875)} ${spacing()};
-      min-width: 120px;
       width: 100%;
     `};
 
@@ -231,21 +121,28 @@ const ButtonWrapper = styled(ButtonReset)`
     `}
 
   ${props =>
-    props.variant === 'textButton' &&
+    props.size === 'fixed' &&
     css`
-      color: ${({ theme }) => theme.text};
-      padding: 0;
-
-      &:hover {
-        color: ${({ theme }) => theme.primary};
-        background-color: transparent;
-      }
+      min-width: 220px;
     `}
 
   &:disabled {
-    background-color: ${({ theme }) => theme.boxShadowColor};
-    color: rgba(0, 0, 0, 0.38);
     cursor: not-allowed;
+
+    ${props =>
+      props.variant &&
+      css`
+        background-color: ${({ theme }) => theme.disabled};
+        color: rgba(0, 0, 0, 0.38);
+        box-shadow: none;
+      `}
+
+      ${props =>
+        props.variant &&
+        css`
+          color: ${({ theme }) => theme.textLight};
+          box-shadow: none;
+        `}
   }
 `;
 
@@ -315,4 +212,58 @@ export const List = styled.ul`
   margin-bottom: 0;
   padding-left: 0;
   list-style-type: none;
+`;
+export const Buttons = styled.div`
+  margin-left: ${spacing(-1)};
+  margin-top: ${spacing(-1)};
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  > * {
+    margin-left: ${spacing()};
+    margin-top: ${spacing()};
+  }
+
+  ${props =>
+    props.alignment === 'right' &&
+    css`
+      justify-content: flex-end;
+    `};
+
+  ${props =>
+    props.alignment === 'left' &&
+    css`
+      justify-content: flex-start;
+    `}
+
+  ${props =>
+    props.hasTopMargin &&
+    css`
+      margin-top: ${({ theme }) => theme.spacing()};
+    `};
+
+  ${props =>
+    props.spacingSize === 'small' &&
+    css`
+      margin-left: ${spacing(-0.5)};
+      margin-top: ${spacing(-0.5)};
+
+      > * {
+        margin-left: ${spacing(0.5)};
+        margin-top: ${spacing(0.5)};
+      }
+    `}
+
+  ${props =>
+    props.spacingSize === 'big' &&
+    css`
+      margin-left: ${spacing(-2)};
+      margin-top: ${spacing(-2)};
+
+      > * {
+        margin-left: ${spacing(2)};
+        margin-top: ${spacing(2)};
+      }
+    `}
 `;
