@@ -1,1 +1,4 @@
-# frontend-bricks
+# Initial page
+
+https://tymate.dev
+
