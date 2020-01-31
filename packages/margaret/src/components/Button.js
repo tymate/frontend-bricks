@@ -1,0 +1,123 @@
+import React from 'react';
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { ButtonReset } from '../ui';
+import RawSpinner from './Spinner';
+
+const Spinner = styled(RawSpinner)`
+  margin-right: ${({ theme }) => theme.spacing(0.5)};
+`;
+
+const ButtonWrapper = styled(ButtonReset)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.primary};
+  font-weight: 600;
+  line-height: 1;
+  transition: background 150ms ease;
+  white-space: nowrap;
+  font-size: 1em;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  position: relative;
+  padding: ${({ theme }) => theme.spacing(0.825)} ${({ theme }) =>
+  theme.spacing(1.5)};
+
+  &:hover {
+    color: ${({ theme }) => theme.primaryLight};
+  }
+
+  > svg {
+    margin-right: ${({ theme }) => theme.spacing(0.25)};
+  }
+
+  ${props =>
+    props.variant === 'primary' &&
+    css`
+      box-shadow: none;
+      background: ${({ theme }) => theme.primary};
+      color: #fff;
+
+      &:hover {
+        background: ${({ theme }) => theme.primaryLight};
+        color: #fff;
+      }
+    `};
+
+  ${props =>
+    props.variant === 'secondary' &&
+    css`
+      box-shadow: none;
+      background: ${({ theme }) => theme.secondary};
+      color: #fff;
+
+      &:hover {
+        background: ${({ theme }) => theme.secondaryLight};
+        color: #fff;
+      }
+    `};
+
+  ${props =>
+    props.variant === 'outline' &&
+    css`
+      color: ${({ theme }) => theme.secondary};
+      box-shadow: inset 0 0 0 2px ${({ theme }) => theme.secondary};
+
+      &:hover {
+        color: ${({ theme }) => theme.secondaryLight};
+        box-shadow: inset 0 0 0 2px ${({ theme }) => theme.secondaryLight};
+      }
+    `}
+
+  ${props =>
+    props.isLoading &&
+    css`
+      padding-left: ${({ theme }) => theme.spacing(1.5)};
+    `}
+
+  ${props =>
+    props.size === 'full' &&
+    css`
+      width: 100%;
+    `};
+
+  ${props =>
+    props.size === 'big' &&
+    css`
+      font-size: 1.5em;
+    `}
+
+  ${props =>
+    props.size === 'fixed' &&
+    css`
+      min-width: 220px;
+    `}
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${({ theme }) => theme.disabled};
+    color: rgba(0, 0, 0, 0.38);
+    box-shadow: none;
+    color: ${({ theme }) => theme.textLight};
+    box-shadow: none;
+  }
+`;
+
+const Button = ({ isLoading, children, icon, as, ...props }) => (
+  <ButtonWrapper
+    {...props}
+    as={Boolean(props.to) ? Link : Boolean(as) ? as : null}
+    disabled={props.disabled || isLoading}
+  >
+    {isLoading && <Spinner variant="button" />}
+    {!isLoading && icon}
+    {children}
+  </ButtonWrapper>
+);
+
+Button.propTypes = {
+  isLoading: PropTypes.bool,
+};
+
+export default Button;

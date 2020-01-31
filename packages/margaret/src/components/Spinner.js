@@ -5,6 +5,7 @@ import 'loaders.css';
 const Spin = styled.div`
   > div {
     background-color: ${({ theme }) => theme.primary};
+
     ${props =>
       props.variant === 'button' &&
       css`
@@ -16,28 +17,30 @@ const Spin = styled.div`
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
-  margin-top: ${({ theme }) => theme.spacing(4)};
+  align-items: center;
+  min-height: 120px;
 
   ${props =>
     props.variant === 'button' &&
     css`
       display: block;
-      margin-bottom: 0;
       transform: scale(0.5);
       margin-right: ${({ theme }) => theme.spacing(1.5)};
-      margin-top: 0;
     `};
 `;
 
-const Spinner = ({ variant }) => (
+const Spinner = ({ loader, variant }) => (
   <Wrapper variant={variant}>
-    <Spin className="ball-spin-fade-loader" variant={variant}>
+    <Spin className={loader} variant={variant}>
       {[...Array(8)].map((div, index) => (
         <div key={index} />
       ))}
     </Spin>
   </Wrapper>
 );
+
+Spinner.defaultProps = {
+  loader: 'ball-spin-fade-loader',
+};
 
 export default Spinner;
