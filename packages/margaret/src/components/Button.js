@@ -117,7 +117,26 @@ const Button = ({ isLoading, children, icon, as, ...props }) => (
 );
 
 Button.propTypes = {
+  /**
+   * Displays the spinner & disables the button
+   * */
   isLoading: PropTypes.bool,
+  /**
+   * Changes the appearance of the button
+   */
+  variant: PropTypes.oneOf(['primary', 'secondary', 'outline']),
+  disabled: PropTypes.bool,
+  /**
+   * If this prop is set, the button acts like a link,
+   * and cannot be disabled
+   */
+  to: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
+  size: PropTypes.oneOf(['full', 'fixed', 'big']),
 };
 
 export default Button;
