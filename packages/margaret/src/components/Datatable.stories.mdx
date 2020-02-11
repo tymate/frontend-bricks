@@ -1,0 +1,88 @@
+import {useState, useEffect} from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import DataTable from './DataTable';
+import {Icon} from '../ui/base';
+import {times} from 'lodash';
+import { MdStar } from 'react-icons/md';
+import { getCatsBreeds } from './__mocks__';
+
+<Meta
+title="Design System/DataTable"
+component={DataTable}
+parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# DataTable
+
+<Preview>
+  <Story name="DataTable">
+    {() => {
+      const [catsBreeds, setCatsBreeds] = useState([]); 
+      const fetchData = async () => {
+        const { data } = await getCatsBreeds();
+        setCatsBreeds(data);
+      };
+      useEffect(() => {
+        fetchData();
+      }, []);
+      const headings = [
+        {
+          slug: 'name',
+          label: 'Name',
+          width: '100%'
+        },
+        {
+          slug: 'origin',
+          label: 'Origin'
+        },
+        {
+          slug: 'lifeSpan',
+          label: 'Life span'
+        },
+        {
+          slug: 'childFriendly',
+          label: 'Child friendly',
+          textAlign: 'right',
+        },
+        {
+          slug: 'dogFriendly',
+          label: 'Dog friendly',
+          textAlign: 'right',
+        },
+      ];
+      const data = catsBreeds.map(({ name, origin, life_span, child_friendly, dog_friendly }) => ({
+        name: {value: name},
+        origin: {value: origin},
+        lifeSpan: {
+          value: life_span, 
+          render: () => <span>{`${life_span} year`}</span>},
+        childFriendly : {
+          value: child_friendly,
+          render: () => (
+            <div style={{ display: 'flex' }}>
+              {
+                Array.from({ length: child_friendly }, 
+                () => (<Icon><MdStar/></Icon>))
+              }
+            </div>
+          )
+        },
+        dogFriendly : {
+          value: dog_friendly,
+          render: () => (
+            <div style={{ display: 'flex' }}>
+              {
+                Array.from({ length: dog_friendly }, 
+                () => (<Icon><MdStar/></Icon>))
+              }
+            </div>
+          )
+        },
+      }))
+      return (
+          <DataTable headings={headings} data={data} isSearchable={false}/>
+      )
+    }}
+  </Story>
+</Preview>

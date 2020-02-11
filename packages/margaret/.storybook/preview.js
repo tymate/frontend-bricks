@@ -4,6 +4,8 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
 import { MargaretProvider } from '../src';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 const GlobalStyle = createGlobalStyle`
   h1,
@@ -24,9 +26,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const history = createBrowserHistory();
+
 addParameters({
   options: {
     showRoots: true,
+    showCanvas: false,
   },
   dependencies: {
     //display only dependencies/dependents that have a story in storybook
@@ -36,6 +41,7 @@ addParameters({
     //completely hide a dependency/dependents block if it has no elements
     //by default this is false
     hideEmpty: false,
+    previewTabs: { canvas: { hidden: true } },
   },
 });
 
@@ -44,8 +50,10 @@ addDecorator(withKnobs);
 addDecorator(story => (
   <>
     <MargaretProvider>
-      <GlobalStyle />
-      {story()}
+      <Router history={history}>
+        <GlobalStyle />
+        {story()}
+      </Router>
     </MargaretProvider>
   </>
 ));

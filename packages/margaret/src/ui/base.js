@@ -124,3 +124,10 @@ export const Buttons = styled.div`
       }
     `}
 `;
+
+export const Icon = styled.div`
+  font-size: 1.25rem;
+  + * {
+    margin-left: ${({ theme }) => theme.spacing(0.5)};
+  }
+`;
