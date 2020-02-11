@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { media } from './';
+import { media } from './utils';
 
 export const fontSize = {
   h1: css`

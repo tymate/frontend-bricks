@@ -1,0 +1,29 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import ConfirmButton from './ConfirmButton';
+import { Buttons } from '../ui';
+
+<Meta
+  title="Design System/ConfirmButton"
+  component={ConfirmButton}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# ConfirmButton
+
+<Props of={ConfirmButton} />
+
+<Preview>
+  <Story name="ConfirmButton">
+    <Buttons>
+      <ConfirmButton
+        variant="secondary"
+        modalTitle="Destroy this page"
+        modalContent="Are you sure you want to delete this page"
+        onSubmit={() => console.log('Deleted')}
+      >
+        Destroy
+      </ConfirmButton>
+    </Buttons>
+  </Story>
+</Preview>

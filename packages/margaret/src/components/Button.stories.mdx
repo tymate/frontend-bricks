@@ -1,0 +1,58 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import Button from './Button';
+import { Buttons } from '../ui';
+
+<Meta
+  title="Design System/Button"
+  component={Button}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Button
+
+Buttons allow users to take actions, make choices or navigate within a product or website.
+
+<Props of={Button} />
+
+## Default
+
+<Preview>
+  <Story name="DefaultButton">
+    <Buttons alignment="left">
+      <Button>Hello Button</Button>
+      <Button disabled>Hello Button</Button>
+    </Buttons>
+  </Story>
+</Preview>
+
+## Variants
+
+<Preview>
+  <Story name="VariantsButton">
+    <Buttons alignment="left">
+      <Button>Default</Button>
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+    </Buttons>
+  </Story>
+</Preview>
+
+## Sizes
+
+<Preview>
+  <Story name="SizesButton">
+    <Buttons alignment="left">
+      <Button variant="primary" size="big">
+        Big
+      </Button>
+      <Button variant="primary" sizes="fixed">
+        Fixed
+      </Button>
+      <Button variant="primary" size="full">
+        Full
+      </Button>
+    </Buttons>
+  </Story>
+</Preview>
