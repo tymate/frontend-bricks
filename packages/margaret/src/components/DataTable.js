@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import { get, isEqual, orderBy, pickBy } from 'lodash';
 import queryString from 'query-string';
+import PropTypes from 'prop-types';
 import { MdUnfoldMore, MdKeyboardArrowDown } from 'react-icons/md';
 import {
   Table,
@@ -14,7 +15,7 @@ import {
   Tfoot,
   TableFooterActions,
   TableWrapper,
-} from 'ui/table';
+} from '../ui/table';
 import { createBrowserHistory } from 'history';
 import LocationAwareSearch from './LocationAwareSearch';
 import Spinner from './Spinner';
@@ -186,7 +187,7 @@ class DataTable extends Component {
     } = this.props;
     const { activeProp, propByKey } = this.state;
     const nested = item => item[activeProp].value;
-    const sort = get(queryString.parse(location.search), 'sort');
+    const sort = get(queryString.parse(location && location.search), 'sort');
 
     const data =
       (activeProp &&
@@ -237,10 +238,12 @@ class DataTable extends Component {
                           <SwitchButton
                             as={!fixed ? Link : null}
                             to={{
-                              pathname: location.pathname,
+                              pathname: location && location.pathname,
                               search: queryString.stringify(
                                 pickBy({
-                                  ...queryString.parse(location.search),
+                                  ...queryString.parse(
+                                    location && location.search,
+                                  ),
                                   sort:
                                     sort === `-${slug}`
                                       ? slug
@@ -272,7 +275,7 @@ class DataTable extends Component {
               </Thead>
             )}
 
-            {!loading && (
+            {!isLoading && (
               <Tbody shouldHideTableHead={shouldHideTableHead}>
                 {data.map((data, index) => (
                   <Tr
@@ -282,7 +285,7 @@ class DataTable extends Component {
                       data.path
                         ? {
                             pathname: data.path,
-                            search: location.search,
+                            search: location && location.search,
                             state: { modal, prev },
                           }
                         : null
@@ -357,5 +360,40 @@ class DataTable extends Component {
     );
   }
 }
+
+DataTable.propTypes = {
+  headings: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string,
+      label: PropTypes.string,
+      width: PropTypes.string,
+      textAlign: PropTypes.string,
+      hasNoLeftPadding: PropTypes.bool,
+      fixed: PropTypes.bool,
+    }),
+  ).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string,
+      label: PropTypes.string,
+      width: PropTypes.string,
+      textAlign: PropTypes.string,
+      hasNoLeftPadding: PropTypes.bool,
+      fixed: PropTypes.bool,
+      onClick: PropTypes.func,
+      isWarning: PropTypes.bool,
+      path: PropTypes.string,
+    }),
+  ),
+  fixedLines: PropTypes.arrayOf(PropTypes.object),
+  isLoading: PropTypes.bool,
+  isSearchable: PropTypes.bool,
+  shouldHideTableHead: PropTypes.bool,
+  filterable: PropTypes.bool,
+  action: PropTypes.node,
+  footer: PropTypes.node,
+  footerActions: PropTypes.node,
+  emptyState: PropTypes.node,
+};
 
 export default withRouter(DataTable);

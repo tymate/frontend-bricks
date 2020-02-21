@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { MdSearch, MdHighlightOff } from 'react-icons/md';
-import { ButtonReset } from 'ui/base';
-import { SearchInput } from 'ui/forms';
+import { ButtonReset } from '../ui/base';
+import { SearchInput } from '../ui/forms';
 
 const CancelableInputContainer = styled.div`
   position: relative;
