@@ -17,6 +17,9 @@ export const theme = {
   borderRadius: '6px',
   buttonBorderRadius: '6px',
 
+  boxShadowColor: 'rgba(0,0,0, 0.12)',
+  boxShadowColorHover: 'rgba(0,0,0, 0.24)',
+
   fontStack: {
     title: '"Archivo Narrow", sans-serif',
     body: '"Chivo", sans-serif',

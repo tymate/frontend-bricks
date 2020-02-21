@@ -1,0 +1,84 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Card } from './';
+import { MyCardFooter } from '../sandbox';
+
+<Meta
+  title="Design System/Card"
+  component={Card}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Card
+
+<Props of={Card} />
+
+## Default
+
+<Preview>
+  <Story name="DefaultCard">
+    <Card fixedSize={550} hasLink title="Card title" subtitle="Card subtitle">
+      Truc
+    </Card>
+  </Story>
+</Preview>
+
+## Raised
+
+<Preview>
+  <Story name="RaisedCard">
+    <Card
+      fixedSize={550}
+      title="Card title"
+      subtitle="Card subtitle"
+      variant="raised"
+    >
+      Truc
+    </Card>
+  </Story>
+</Preview>
+
+## Subtle
+
+<Preview>
+  <Story name="SubtleCard">
+    <Card
+      fixedSize={550}
+      title="Card title"
+      subtitle="Card subtitle"
+      variant="subtle"
+    >
+      Truc
+    </Card>
+  </Story>
+</Preview>
+
+## Link
+
+<Preview>
+  <Story name="LinkCard">
+    <Card
+      fixedSize={550}
+      title="Card title"
+      subtitle="Card subtitle"
+      variant="link"
+    >
+      Truc
+    </Card>
+  </Story>
+</Preview>
+
+## TumbnailCard
+
+<Preview>
+  <Story name="TumbnailCard">
+    <Card
+      fixedSize={300}
+      thumbnailUrl={`https://d3v4jsc54141g1.cloudfront.net/uploads/reward_image/image/129779/Cachou_2-1454402733.JPG`}
+      title="Black Cat"
+      subtitle="European shorthair"
+      description="The term has also been used as an elaborate way of referring to common domestic cats of Europe."
+      footer={<MyCardFooter />}
+    />
+  </Story>
+</Preview>
