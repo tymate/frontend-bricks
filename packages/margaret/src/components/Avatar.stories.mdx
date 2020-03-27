@@ -1,0 +1,44 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import Avatar from './Avatar';
+import { Buttons } from '../ui'
+
+<Meta
+  title="Design System/Avatar"
+  component={Avatar}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Avatar
+
+Avatars are avatars.
+
+<Props of={Avatar} />
+
+## Sizes
+
+<Preview>
+  <Story name="Sizes">
+    <>
+    <Buttons style={{alignItems: 'center'}} alignment="left">
+      <Avatar firstName="Pierre" lastName="Quincampoix" size="small"/>
+      <Avatar firstName="Pierre" lastName="Quincampoix" />
+      <Avatar firstName="Pierre" lastName="Quincampoix" size="medium"/>
+      <Avatar firstName="Pierre" lastName="Quincampoix" size="large"/>
+      </Buttons>
+    </>
+  </Story>
+</Preview>
+
+## Kinds
+
+<Preview>
+  <Story name="Kinds">
+    <Buttons style={{alignItems: 'center'}} alignment="left">
+      <Avatar imageUrl="https://picsum.photos/256/256" />
+      <Avatar firstName="Pierre" lastName="Quincampoix" />
+      <Avatar firstName="Pierre" lastName="Quincampoix" imageUrl="https://picsum.photos/128/128" />
+      <Avatar />
+    </Buttons>
+  </Story>
+</Preview>

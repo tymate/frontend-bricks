@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { media } from './utils';
+import { Link } from 'react-router-dom';
 
 export const ButtonReset = styled.button`
   border: 0;
@@ -15,6 +16,11 @@ export const ButtonReset = styled.button`
     css`
       width: 100%;
     `}
+`;
+
+export const RawLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
 `;
 
 export const Container = styled.div`
@@ -70,6 +76,7 @@ export const List = styled.ul`
   padding-left: 0;
   list-style-type: none;
 `;
+
 export const Buttons = styled.div`
   margin-left: ${({ theme }) => theme.spacing(-1)};
   margin-top: ${({ theme }) => theme.spacing(-1)};
@@ -130,4 +137,77 @@ export const Icon = styled.div`
   + * {
     margin-left: ${({ theme }) => theme.spacing(0.5)};
   }
+`;
+
+export const MediaImage = styled.div`
+  display: flex;
+`;
+
+export const MediaBody = styled.div`
+  flex: 1;
+  padding-left: ${({ theme }) => theme.spacing()};
+
+  ${props =>
+    props.variant === 'compact' &&
+    css`
+      padding-left: ${({ theme }) => theme.spacing(0.5)};
+    `};
+`;
+
+export const Media = styled.div`
+  display: flex;
+  align-items: flex-start;
+
+  ${({ variant, verticalAlign }) =>
+    (variant === 'center' || verticalAlign === 'center') &&
+    `
+      align-items: center;
+    `};
+
+  ${({ isMargedBottom, theme }) =>
+    isMargedBottom &&
+    `
+      margin-bottom: ${({ theme }) => theme.spacing(2)};
+    `};
+
+  ${({ size, theme }) =>
+    size === 'tight' &&
+    `
+      ${MediaBody} {
+        padding-left: ${({ theme }) => theme.spacing(0.5)};
+      }
+    `};
+
+  ${({ variant }) =>
+    variant === 'inverted' &&
+    `
+      ${MediaBody} {
+        padding-left: 0;
+      }
+    `}
+`;
+
+export const TitleAndAction = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ${({ hasTopMargin, theme }) =>
+    hasTopMargin &&
+    `
+      margin-top: ${theme.spacing()}
+    `}
+
+  ${({ hasBottomMargin, theme }) =>
+    hasBottomMargin &&
+    `
+      margin-bottom: ${theme.spacing()}
+    `}
+
+  ${({ hasBottomBorder, theme }) =>
+    hasBottomBorder &&
+    `
+      padding-bottom: ${theme.spacing()};
+      border-bottom: 1px solid ${theme.text}
+    `}
 `;
