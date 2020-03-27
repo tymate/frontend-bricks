@@ -17,6 +17,11 @@ export const theme = {
   borderRadius: '6px',
   buttonBorderRadius: '6px',
 
+  sidebarSize: '260px',
+  sidebarBackground: 'hsl(137, 54%, 61%)',
+  sidebarTextColor: 'rgba(255, 255, 255, 0.5)',
+  sidebarHoverColor: '#fff',
+
   boxShadowColor: 'rgba(0,0,0, 0.12)',
   boxShadowColorHover: 'rgba(0,0,0, 0.24)',
 
