@@ -106,68 +106,9 @@ class DataTable extends Component {
     isSearchable: true,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = getInitialState(props);
-  }
-
-  componentDidMount() {
-    Boolean(this.props.onReorder) && this.sendIdsToParent();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (!isEqual(this.state, prevState)) {
-      Boolean(this.props.onReorder) && this.sendIdsToParent();
-    }
-  }
-
-  sendIdsToParent = () => {
-    const { activeProp, propByKey } = this.state;
-    const nested = item => item[activeProp].value;
-
-    const orderedIds = (
-      (activeProp &&
-        Boolean(this.props.data.length) &&
-        orderBy(this.props.data, nested, propByKey[activeProp])) ||
-      this.props.data
-    ).map(({ id }) => id);
-
-    this.props.onReorder(orderedIds);
-  };
-
-  orderBy = (prop, fixed) => {
-    const { filterable } = this.props;
-    if (!filterable || fixed) return;
-
-    this.props.onOrderBy(prop);
-  };
-
-  togglePropOrder = prop => {
-    const { propByKey } = this.state;
-
-    if (propByKey[prop] === ASC) {
-      this.setState({
-        propByKey: {
-          ...propByKey,
-          [prop]: DESC,
-        },
-        activeProp: null,
-      });
-
-      return;
-    }
-
-    this.setState({
-      propByKey: {
-        ...propByKey,
-        [prop]: propByKey[prop] === DESC ? ASC : DESC,
-      },
-    });
-  };
-
   render() {
     const {
+      data,
       headings,
       style,
       fixedLines,
@@ -185,15 +126,8 @@ class DataTable extends Component {
       footerActions,
       searchPlaceholder,
     } = this.props;
-    const { activeProp, propByKey } = this.state;
-    const nested = item => item[activeProp].value;
-    const sort = get(queryString.parse(location && location.search), 'sort');
 
-    const data =
-      (activeProp &&
-        Boolean(this.props.data.length) &&
-        orderBy(this.props.data, nested, propByKey[activeProp])) ||
-      this.props.data;
+    const sort = get(queryString.parse(location && location.search), 'sort');
 
     return (
       <>
