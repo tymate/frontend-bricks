@@ -136,7 +136,7 @@ Button.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
-  size: PropTypes.oneOf(['full', 'fixed', 'big']),
+  size: PropTypes.oneOf(['auto', 'full', 'fixed', 'big']),
 };
 
 export default Button;
