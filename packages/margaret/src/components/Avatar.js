@@ -43,6 +43,14 @@ const AvatarWrapper = styled.span`
     `};
 
   ${props =>
+    props.size === 'huge' &&
+    css`
+      height: ${({ theme }) => theme.spacing(8)};
+      width: ${({ theme }) => theme.spacing(8)};
+      font-size: calc(${({ theme }) => theme.spacing(8)} / 2.2);
+    `};
+
+  ${props =>
     props.variant === 'rounded' &&
     css`
       border-radius: ${({ theme }) => theme.borderRadius};
