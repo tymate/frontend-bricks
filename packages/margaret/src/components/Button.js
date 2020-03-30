@@ -3,11 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ButtonReset } from '../ui';
-import RawSpinner from './Spinner';
-
-const Spinner = styled(RawSpinner)`
-  margin-right: ${({ theme }) => theme.spacing(0.5)};
-`;
+import Spinner from './Spinner';
 
 const ButtonWrapper = styled(ButtonReset)`
   display: flex;
