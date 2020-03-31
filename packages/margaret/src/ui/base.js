@@ -102,6 +102,12 @@ export const Buttons = styled.div`
     `}
 
   ${props =>
+    props.verticalAlignment === 'center' &&
+    css`
+      align-items: center;
+    `}
+
+  ${props =>
     props.hasTopMargin &&
     css`
       margin-top: ${({ theme }) => theme.spacing()};

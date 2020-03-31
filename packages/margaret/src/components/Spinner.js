@@ -24,8 +24,9 @@ const Wrapper = styled.div`
     props.variant === 'button' &&
     css`
       display: block;
-      transform: scale(0.5);
+      transform: scale(0.4);
       margin-right: ${({ theme }) => theme.spacing(1.5)};
+      min-height: 0;
     `};
 `;
 

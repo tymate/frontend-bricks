@@ -21,8 +21,9 @@ const Card = ({
   header,
   footer,
   description,
+  ...props
 }) => (
-  <CardWrapper fixedSize={fixedSize} variant={variant}>
+  <CardWrapper fixedSize={fixedSize} variant={variant} {...props}>
     {(thumbnailUrl || header) && (
       <CardHeader thumbnailUrl={thumbnailUrl}></CardHeader>
     )}

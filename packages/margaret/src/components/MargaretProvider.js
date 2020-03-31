@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme as defaultTheme } from '../ui';
+import 'sanitize.css';
 
 const merge = (empirical = {}, payload = {}) => {
   let output = empirical;

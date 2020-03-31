@@ -10,17 +10,20 @@ const AvatarWrapper = styled.span`
   justify-content: center;
   width: ${({ theme }) => theme.spacing(3)};
   height: ${({ theme }) => theme.spacing(3)};
+  font-size: calc(${({ theme }) => theme.spacing(3)} / 2.2);
   background-color: ${({ theme }) => theme.primary};
   color: #fff;
   border-radius: 100%;
   background-size: cover;
   background-position: center center;
+  text-transform: uppercase;
 
   ${props =>
     props.size === 'small' &&
     css`
       height: ${({ theme }) => theme.spacing(2)};
       width: ${({ theme }) => theme.spacing(2)};
+      font-size: calc(${({ theme }) => theme.spacing(2)} / 2.2);
     `};
 
   ${props =>
@@ -28,6 +31,7 @@ const AvatarWrapper = styled.span`
     css`
       height: ${({ theme }) => theme.spacing(4)};
       width: ${({ theme }) => theme.spacing(4)};
+      font-size: calc(${({ theme }) => theme.spacing(4)} / 2.2);
     `};
 
   ${props =>
@@ -35,7 +39,22 @@ const AvatarWrapper = styled.span`
     css`
       height: ${({ theme }) => theme.spacing(6)};
       width: ${({ theme }) => theme.spacing(6)};
+      font-size: calc(${({ theme }) => theme.spacing(6)} / 2.2);
     `};
+
+  ${props =>
+    props.size === 'huge' &&
+    css`
+      height: ${({ theme }) => theme.spacing(8)};
+      width: ${({ theme }) => theme.spacing(8)};
+      font-size: calc(${({ theme }) => theme.spacing(8)} / 2.2);
+    `};
+
+  ${props =>
+    props.variant === 'rounded' &&
+    css`
+      border-radius: ${({ theme }) => theme.borderRadius};
+    `}
 `;
 
 const Avatar = ({ firstName, lastName, size, imageUrl, ...props }) => (
