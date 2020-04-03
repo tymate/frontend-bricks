@@ -19,6 +19,14 @@ const AvatarWrapper = styled.span`
   text-transform: uppercase;
 
   ${props =>
+    props.size === 'tiny' &&
+    css`
+      height: ${({ theme }) => theme.spacing(1.5)};
+      width: ${({ theme }) => theme.spacing(1.5)};
+      font-size: calc(${({ theme }) => theme.spacing(1.5)} / 2.2);
+    `};
+
+  ${props =>
     props.size === 'small' &&
     css`
       height: ${({ theme }) => theme.spacing(2)};
@@ -75,8 +83,8 @@ const Avatar = ({ firstName, lastName, size, imageUrl, ...props }) => (
 Avatar.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  imageUrl: PropTypes.bool,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  imageUrl: PropTypes.string,
+  size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'huge']),
 };
 
 Avatar.defaultProps = {
