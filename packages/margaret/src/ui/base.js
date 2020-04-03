@@ -43,6 +43,12 @@ export const Container = styled.div`
     `}
 
   ${props =>
+    props.size === 'full' &&
+    css`
+      width: 100%;
+    `}
+
+  ${props =>
     props.variant === 'bare' &&
     css`
       padding-left: 0;
@@ -59,6 +65,11 @@ export const Container = styled.div`
     css`
       padding-top: ${({ theme }) => theme.spacing(2)};
       padding-bottom: ${({ theme }) => theme.spacing(2)};
+
+      ${media.tablet`
+        padding-top: ${({ theme }) => theme.spacing()};
+        padding-bottom: ${({ theme }) => theme.spacing()};
+      `}
     `}
 
     ${props =>
