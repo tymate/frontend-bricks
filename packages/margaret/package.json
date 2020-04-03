@@ -31,9 +31,7 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "rollup -c",
-    "prepublish": "yarn version && yarn build",
-    "publish": "npm publish dist"
+    "build": "rollup -c"
   },
   "eslintConfig": {
     "extends": "react-app"
