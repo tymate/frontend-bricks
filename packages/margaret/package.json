@@ -1,6 +1,6 @@
 {
   "name": "@tymate/margaret",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "private": false,
   "main": "./dist/index.js",
   "repository": "git@github.com:tymate/frontend-bricks.git",
