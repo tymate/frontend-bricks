@@ -4,13 +4,22 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import strip from '@rollup/plugin-strip';
-import { terser } from 'rollup-plugin-terser';
 
 export default {
   input: 'src/index.js',
   output: {
-    format: 'cjs',
+    format: 'umd',
+    name: 'Margaret',
     dir: 'dist',
+    sourcemap: true,
+    globals: {
+      react: 'React',
+      'styled-components': 'styled',
+      'react-router-dom': 'reactRouterDom',
+      'react-modal': 'ReactModal',
+      'react-icons/md': 'md',
+      'framer-motion': 'framerMotion',
+    },
   },
   plugins: [
     peerDepsExternal(),
@@ -23,6 +32,5 @@ export default {
       plugins: [],
     }),
     strip(),
-    terser(),
   ],
 };
