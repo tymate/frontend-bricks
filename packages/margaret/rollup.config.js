@@ -8,18 +8,9 @@ import strip from '@rollup/plugin-strip';
 export default {
   input: 'src/index.js',
   output: {
-    format: 'umd',
-    name: 'Margaret',
+    format: 'cjs',
     dir: 'dist',
     sourcemap: true,
-    globals: {
-      react: 'React',
-      'styled-components': 'styled',
-      'react-router-dom': 'reactRouterDom',
-      'react-modal': 'ReactModal',
-      'react-icons/md': 'md',
-      'framer-motion': 'framerMotion',
-    },
   },
   plugins: [
     peerDepsExternal(),
