@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Buttons, ButtonReset } from '../ui';
+import { Buttons, ButtonReset } from '../ui/base';
 import Button from './Button';
 import Modal from './Modal';
 
