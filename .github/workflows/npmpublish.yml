@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - run: cd packages/margaret
       - run: yarn
       - run: yarn build
       - run: npm publish --access public
