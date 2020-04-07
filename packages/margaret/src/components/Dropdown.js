@@ -115,7 +115,7 @@ const Dropdown = (
           setIsOpen(shouldCloseDropdownOnTriggerClick ? !isOpen : true);
         }}
       >
-        {trigger}
+        {typeof trigger === 'function' ? trigger(isOpen) : trigger}
       </InputButton>
 
       <PopoverInner
