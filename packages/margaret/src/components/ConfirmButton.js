@@ -5,26 +5,21 @@ import Button from './Button';
 import Modal from './Modal';
 
 const ConfirmButton = ({
-  variant,
-  disabled,
   children,
   modalContent,
   modalTitle,
   onSubmit,
   modalCancelTitle,
   modalSubmitTitle,
+  confirmElement = <Button as="span">Oui, supprimer</Button>,
 }) => {
   const [modalIsShown, setModalIsShown] = useState(false);
 
   return (
     <>
-      <Button
-        onClick={() => setModalIsShown(true)}
-        variant={variant}
-        disabled={disabled}
-      >
-        {children}
-      </Button>
+      <ButtonReset onClick={() => setModalIsShown(true)}>
+        {confirmElement}
+      </ButtonReset>
       <Modal
         onRequestClose={() => setModalIsShown(false)}
         isOpen={modalIsShown}

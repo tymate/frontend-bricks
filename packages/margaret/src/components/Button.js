@@ -15,7 +15,7 @@ const ButtonWrapper = styled(ButtonReset)`
   transition: background 150ms ease;
   white-space: nowrap;
   font-size: 1em;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderButtonRadius};
   position: relative;
   padding: ${({ theme }) => theme.spacing(0.825)} ${({ theme }) =>
   theme.spacing(1.5)};
