@@ -1,6 +1,258 @@
 import styled, { css } from 'styled-components';
 import { media } from './utils';
 import { Link } from 'react-router-dom';
+import { keys } from 'lodash';
+
+export const Legend = styled.span`
+  font-size: 14px;
+  color: ${({ theme }) => theme.textLight};
+`;
+
+export const Name = styled.span`
+  font-weight: 500;
+`;
+
+const getSpacingFromSize = ({ theme, gutterSize }) => {
+  if (typeof gutterSize === 'number') {
+    return theme.spacing(gutterSize);
+  }
+
+  return 0;
+};
+
+export const gutterSizes = ({ theme, gutterSize, direction }) => {
+  if (typeof gutterSize === 'object') {
+    return css`
+      margin-${direction}: ${getSpacingFromSize({
+      theme,
+      gutterSize: gutterSize?.default,
+    })};
+
+    ${keys(gutterSize)
+      .map(f => console.log(f) || f)
+      .filter(key => key !== 'default')
+      .map(
+        breakpoint => media[breakpoint]`
+          
+          margin-${direction}: ${getSpacingFromSize({
+          theme,
+          gutterSize: gutterSize[breakpoint],
+        })}
+        `,
+      )};`;
+  }
+
+  return css`
+    margin-${direction}: ${getSpacingFromSize({ theme, gutterSize })}
+  `;
+};
+
+export const spacings = props => css`
+  ${({ margin }) =>
+    (Boolean(margin) || margin === 0) &&
+    css`
+      margin: ${({ theme }) => theme.spacing(margin)};
+    `}
+
+  ${({ marginVertical }) =>
+    (Boolean(marginVertical) || marginVertical === 0) &&
+    css`
+      margin-top: ${({ theme }) => theme.spacing(marginVertical)};
+      margin-bottom: ${({ theme }) => theme.spacing(marginVertical)};
+    `}
+
+  ${({ marginHorizontal }) =>
+    (Boolean(marginHorizontal) || marginHorizontal === 0) &&
+    css`
+      margin-left: ${({ theme }) => theme.spacing(marginHorizontal)};
+      margin-right: ${({ theme }) => theme.spacing(marginHorizontal)};
+    `}
+
+  ${({ marginTop }) =>
+    (Boolean(marginTop) || marginTop === 0) &&
+    css`
+      margin-top: ${({ theme }) => theme.spacing(marginTop)};
+    `}
+
+  ${({ marginBottom }) =>
+    (Boolean(marginBottom) || marginBottom === 0) &&
+    css`
+      margin-bottom: ${({ theme }) => theme.spacing(marginBottom)};
+    `}
+
+  ${({ marginLeft }) =>
+    (Boolean(marginLeft) || marginLeft === 0) &&
+    css`
+      margin-left: ${({ theme }) => theme.spacing(marginLeft)};
+    `}
+
+  ${({ marginRight }) =>
+    (Boolean(marginRight) || marginRight === 0) &&
+    css`
+      margin-right: ${({ theme }) => theme.spacing(marginRight)};
+    `}
+
+  ${({ padding }) =>
+    (Boolean(padding) || padding === 0) &&
+    css`
+      padding: ${({ theme }) => theme.spacing(padding)};
+    `}
+
+  ${({ paddingVertical }) =>
+    (Boolean(paddingVertical) || paddingVertical === 0) &&
+    css`
+      padding-top: ${({ theme }) => theme.spacing(paddingVertical)};
+      padding-bottom: ${({ theme }) => theme.spacing(paddingVertical)};
+    `}
+
+  ${({ paddingHorizontal }) =>
+    (Boolean(paddingHorizontal) || paddingHorizontal === 0) &&
+    css`
+      padding-left: ${({ theme }) => theme.spacing(paddingHorizontal)};
+      padding-right: ${({ theme }) => theme.spacing(paddingHorizontal)};
+    `}
+
+  ${({ paddingTop }) =>
+    (Boolean(paddingTop) || paddingTop === 0) &&
+    css`
+      padding-top: ${({ theme }) => theme.spacing(paddingTop)};
+    `}
+
+  ${({ paddingBottom }) =>
+    (Boolean(paddingBottom) || paddingBottom === 0) &&
+    css`
+      padding-bottom: ${({ theme }) => theme.spacing(paddingBottom)};
+    `}
+
+  ${({ paddingLeft }) =>
+    (Boolean(paddingLeft) || paddingLeft === 0) &&
+    css`
+      padding-left: ${({ theme }) => theme.spacing(paddingLeft)};
+    `}
+
+  ${({ paddingRight }) =>
+    (Boolean(paddingRight) || paddingRight === 0) &&
+    css`
+      padding-right: ${({ theme }) => theme.spacing(paddingRight)};
+    `}
+`;
+
+export const Box = styled.div`
+  ${spacings()}
+
+  ${({ size }) =>
+    size === 'full' &&
+    css`
+      width: 100%;
+    `}
+`;
+
+export const Stack = styled(Box)`
+  display: flex;
+  flex-direction: ${({ direction }) => direction};
+  
+  ${({ direction }) =>
+    typeof direction === 'object' &&
+    css`
+      flex-direction: ${({ direction }) => direction?.default};
+
+      > * + * {
+        ${({ theme, gutterSize }) =>
+          gutterSizes({
+            theme,
+            gutterSize,
+            direction: direction?.default === 'column' ? 'top' : 'left',
+          })};
+      }
+
+      ${keys(direction)
+        .filter(key => key !== 'default')
+        .map(
+          breakpoint => media[breakpoint]`
+            flex-direction: ${({ direction }) => direction[breakpoint]};
+
+            > * + * {
+              ${({ theme, gutterSize }) =>
+                gutterSizes({
+                  theme,
+                  gutterSize: 0,
+                  direction:
+                    direction[breakpoint] === 'column' ? 'left' : 'top',
+                })};
+
+              ${({ theme, gutterSize }) =>
+                gutterSizes({
+                  theme,
+                  gutterSize,
+                  direction:
+                    direction[breakpoint] === 'column' ? 'top' : 'left',
+                })};
+            }
+          `,
+        )}
+    `}
+
+  ${({ direction }) =>
+    direction === 'row' &&
+    css`
+      align-items: ${({ alignY }) => alignY};
+      justify-content: ${({ alignX }) => alignX};
+
+      > * + * {
+        ${({ theme, gutterSize }) =>
+          gutterSizes({ theme, gutterSize, direction: 'left' })};
+      }
+    `}
+
+  ${({ direction }) =>
+    direction === 'column' &&
+    css`
+      align-items: ${({ alignX }) => alignX};
+      justify-content: ${({ alignY }) => alignY};
+
+      > * + * {
+        ${({ theme, gutterSize }) =>
+          gutterSizes({ theme, gutterSize, direction: 'top' })};
+      }
+    `}
+`;
+
+Stack.defaultProps = {
+  direction: 'row',
+  gutterSize: 'none',
+  alignX: 'flex-start',
+  alignY: 'flex-start',
+};
+
+export const List = styled(Stack)`
+  list-style-type: none;
+`;
+
+List.defaultProps = {
+  as: 'ul',
+  margin: 0,
+  padding: 0,
+};
+
+export const InlineList = styled(List)`
+  flex-wrap: wrap;
+`;
+
+InlineList.defaultProps = {
+  direction: 'row',
+  marginTop: 0,
+  marginBottom: 0,
+};
+
+export const Subtitle = styled(Stack)`
+  font-size: 1.189em;
+  font-weight: 600;
+`;
+
+Subtitle.defaultProps = {
+  marginTop: 2,
+  marginBottom: 0.5,
+};
 
 export const ButtonReset = styled.button`
   border: 0;
@@ -10,6 +262,8 @@ export const ButtonReset = styled.button`
   outline: none;
   cursor: pointer;
   padding: 0;
+  font-size: inherit;
+  font-family: inherit;
 
   ${props =>
     props.size === 'full' &&
@@ -81,18 +335,11 @@ export const Container = styled.div`
       `}
 `;
 
-export const List = styled.ul`
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style-type: none;
-`;
-
 export const Buttons = styled.div`
   margin-left: ${({ theme }) => theme.spacing(-1)};
   margin-top: ${({ theme }) => theme.spacing(-1)};
   display: flex;
-  justify-content: center;
+  justify-content: ${({ theme }) => theme.buttonsDefaultAlignX};
   flex-wrap: wrap;
 
   > * {
@@ -100,22 +347,16 @@ export const Buttons = styled.div`
     margin-top: ${({ theme }) => theme.spacing()};
   }
 
-  ${props =>
-    props.alignment === 'right' &&
+  ${({ alignX }) =>
+    Boolean(alignX) &&
     css`
-      justify-content: flex-end;
-    `};
-
-  ${props =>
-    props.alignment === 'left' &&
-    css`
-      justify-content: flex-start;
+      justify-content: ${({ alignX }) => alignX};
     `}
 
-  ${props =>
-    props.verticalAlignment === 'center' &&
+  ${({ alignY }) =>
+    Boolean(alignY) &&
     css`
-      align-items: center;
+      align-items: ${({ alignY }) => alignY};
     `}
 
   ${props =>

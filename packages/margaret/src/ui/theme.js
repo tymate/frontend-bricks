@@ -3,6 +3,7 @@ import { spacing } from './utils';
 export const theme = {
   primary: 'hsl(137, 54%, 61%)',
   primaryLight: 'hsl(137, 54%, 70%)',
+  primaryBackground: 'hsla(137, 54%, 61%, 0.15)',
   secondary: 'hsl(196, 53%, 41%)',
   secondaryLight: 'hsl(196, 53%, 50%)',
 
@@ -16,6 +17,8 @@ export const theme = {
 
   borderRadius: '6px',
   buttonBorderRadius: '6px',
+
+  buttonsDefaultAlignX: 'center',
 
   sidebarSize: '260px',
   sidebarBackground: 'hsl(137, 54%, 61%)',

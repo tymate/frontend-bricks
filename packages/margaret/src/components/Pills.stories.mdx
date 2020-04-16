@@ -1,0 +1,78 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Pills, Pill } from './Pills';
+import { Stack } from '../ui';
+
+<Meta
+  title="Design System/Pills"
+  component={Pill}
+  parameters={{previewTabs: {canvas: {hidden: true}}}}
+/>
+
+# Pills
+
+Can be used as links between pages, as in-page filters, or as segmented controls.
+
+## As tabs
+
+<Preview>
+  <Story name="As tabs" parameters={{ canvas: { disable: true } }}>
+    <Pills>
+      <Pill to="/" exact>Uno</Pill>
+      <Pill to="/dos">Dos</Pill>
+      <Pill to="/tres">Tres</Pill>
+      <Pill to="/catorce">Catorce</Pill>
+    </Pills>
+  </Story>
+</Preview>
+
+## As filters
+
+<Preview>
+  <Story name="As filters" parameters={{ canvas: { disable: true } }}>
+    {() => {
+      const [activeIndex, setActiveIndex] = useState([]);
+      return (
+        <Stack>
+          <Pills>
+            <Pill isActive={activeIndex === 0} onClick={() => setActiveIndex(0)}>
+              Uno
+            </Pill>
+            <Pill isActive={activeIndex === 1} onClick={() => setActiveIndex(1)}>
+              Dos
+            </Pill>
+            <Pill isActive={activeIndex === 2} onClick={() => setActiveIndex(2)}>
+              Tres
+            </Pill>
+            <Pill isActive={activeIndex === 3} onClick={() => setActiveIndex(3)}>
+              Catorce
+            </Pill>
+          </Pills>
+        </Stack>
+      )
+    }}
+  </Story>
+</Preview>
+
+## As segmented control
+
+<Preview>
+  <Story name="As segmented control" parameters={{ canvas: { disable: true } }}>
+    {() => {
+      const [activeIndex, setActiveIndex] = useState([]);
+      return (
+        <Stack>
+          <Pills>
+            <Pill isActive={activeIndex === 0} onClick={() => setActiveIndex(0)} variant="success">
+              Accept
+            </Pill>
+            <Pill isActive={activeIndex === 1} onClick={() => setActiveIndex(1)} variant="error">
+              Refuse
+            </Pill>
+          </Pills>
+        </Stack>
+      )
+    }}
+  </Story>
+</Preview>
