@@ -26,7 +26,7 @@ const ConfirmButton = ({
         title={modalTitle}
       >
         {modalContent}
-        <Buttons style={{ marginTop: 32 }}>
+        <Buttons style={{ marginTop: 32 }} alignX="center">
           <Button onClick={() => setModalIsShown(false)} variant="phantom">
             {modalCancelTitle}
           </Button>
