@@ -335,7 +335,7 @@ export const Container = styled.div`
       `}
 `;
 
-export const Buttons = styled.div`
+export const Buttons = styled(Box)`
   margin-left: ${({ theme }) => theme.spacing(-1)};
   margin-top: ${({ theme }) => theme.spacing(-1)};
   display: flex;

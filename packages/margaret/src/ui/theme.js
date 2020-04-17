@@ -18,7 +18,7 @@ export const theme = {
   borderRadius: '6px',
   buttonBorderRadius: '6px',
 
-  buttonsDefaultAlignX: 'center',
+  buttonsDefaultAlignX: 'flex-start',
 
   sidebarSize: '260px',
   sidebarBackground: 'hsl(137, 54%, 61%)',
