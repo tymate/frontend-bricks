@@ -149,12 +149,21 @@ export const Box = styled.div`
 
 export const Stack = styled(Box)`
   display: flex;
-  flex-direction: ${({ direction }) => direction};
+  
+  ${({ direction }) =>
+    typeof direction === 'string' &&
+    css`
+      flex-direction: ${({ direction }) => direction};
+    `}
   
   ${({ direction }) =>
     typeof direction === 'object' &&
     css`
       flex-direction: ${({ direction }) => direction?.default};
+      align-items: ${({ alignX, alignY }) =>
+        direction?.default === 'row' ? alignY : alignX};
+      justify-content: ${({ alignX, alignY }) =>
+        direction?.default === 'row' ? alignX : alignY};
 
       > * + * {
         ${({ theme, gutterSize }) =>
@@ -170,6 +179,10 @@ export const Stack = styled(Box)`
         .map(
           breakpoint => media[breakpoint]`
             flex-direction: ${({ direction }) => direction[breakpoint]};
+            align-items: ${({ alignX, alignY }) =>
+              direction[breakpoint] === 'row' ? alignY : alignX};
+            justify-content: ${({ alignX, alignY }) =>
+              direction[breakpoint] === 'row' ? alignX : alignY};
 
             > * + * {
               ${({ theme, gutterSize }) =>
