@@ -7,11 +7,12 @@ export const theme = {
   secondary: 'hsl(196, 53%, 41%)',
   secondaryLight: 'hsl(196, 53%, 50%)',
 
-  disabled: 'rgba(4%, 6%, 13%, .2)',
-  separator: 'rgba(4%, 6%, 13%, .2)',
+  disabled: 'rgba(4%, 6%, 13%, 0.2)',
+  disabledBackground: 'rgba(4%, 6%, 13%, 0.06)',
+  separator: 'rgba(4%, 6%, 13%, 0.2)',
 
   text: '#0B0F21',
-  textLight: 'rgba(4%, 6%, 13%, .5)',
+  textLight: 'rgba(4%, 6%, 13%, 0.5)',
 
   spacing,
 
