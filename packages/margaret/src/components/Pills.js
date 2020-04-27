@@ -46,7 +46,7 @@ export const PillButton = styled(ButtonReset)`
   font-weight: 400;
   line-height: 1.5;
 
-  &:hover {
+  &:not([disabled]):hover {
     color: ${({ theme }) => theme.text};
   }
 

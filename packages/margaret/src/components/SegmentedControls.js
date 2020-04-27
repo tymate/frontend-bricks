@@ -26,7 +26,7 @@ const SegmentedButton = styled(PillButton)`
   box-shadow: none;
   width: 100%;
 
-  &:hover {
+  &:not([disabled]):hover {
     opacity: 0.8;
   }
 
@@ -35,6 +35,12 @@ const SegmentedButton = styled(PillButton)`
     css`
       white-space: nowrap;
     `};
+
+  &:disabled {
+    cursor: default;
+    background-color: ${({ theme }) => theme.disabledBackground};
+    color: ${({ theme }) => theme.disabled};
+  }
 `;
 
 const SegmentedControls = ({
@@ -48,7 +54,13 @@ const SegmentedControls = ({
   <SegmentedWrapper gutterSize={0} {...props}>
     {options.map(
       (
-        { value: optionValue, label, alternateActiveOptions = [], cls },
+        {
+          value: optionValue,
+          label,
+          alternateActiveOptions = [],
+          cls,
+          ...optionProps
+        },
         key,
       ) => (
         <SegmentedItem key={key}>
@@ -62,6 +74,7 @@ const SegmentedControls = ({
             onClick={() => onSelect(optionValue)}
             variant={variant}
             type="button"
+            {...optionProps}
           >
             {label}
           </SegmentedButton>

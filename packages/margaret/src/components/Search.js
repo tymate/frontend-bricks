@@ -61,25 +61,15 @@ class Search extends Component {
     return (
       <CancelableInputContainer full={full} size={size}>
         <SearchIcon>
-          {isFetching ? (
-            {
-              /* <MDSpinner
-              style={{ marginRight: 8 }}
-              singleColor="currentColor"
-              size={16}
-            /> */
-            }
-          ) : (
-            <MdSearch size="20" />
-          )}
+          <MdSearch size="20" />
         </SearchIcon>
 
         <SearchInput
           ref={c => (this.input = c)}
           type="text"
-          {...{ onChange, value, secondary }}
+          onChange={onChange}
+          value={value}
           placeholder={placeholder}
-          style={full || size === 'full' ? { width: '100%' } : {}}
         />
 
         <ButtonReset
