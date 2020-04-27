@@ -5,7 +5,6 @@ import Button from './Button';
 import Modal from './Modal';
 
 const ConfirmButton = ({
-  children,
   modalContent,
   modalTitle,
   onSubmit,
@@ -24,6 +23,7 @@ const ConfirmButton = ({
         onRequestClose={() => setModalIsShown(false)}
         isOpen={modalIsShown}
         title={modalTitle}
+        style={{ textAlign: 'center' }}
       >
         {modalContent}
         <Buttons style={{ marginTop: 32 }} alignX="center">
