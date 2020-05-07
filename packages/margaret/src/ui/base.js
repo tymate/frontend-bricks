@@ -215,6 +215,32 @@ export const Stack = styled(Box)`
         ${({ theme, gutterSize }) =>
           gutterSizes({ theme, gutterSize, direction: 'left' })};
       }
+
+      ${({ variant }) =>
+        variant === 'multiLine' &&
+        css`
+          flex-wrap: wrap;
+
+          ${({ theme, gutterSize }) =>
+            gutterSizes({
+              theme,
+              gutterSize: -1 * gutterSize,
+              direction: 'left',
+            })};
+          ${({ theme, gutterSize }) =>
+            gutterSizes({
+              theme,
+              gutterSize: -1 * gutterSize,
+              direction: 'top',
+            })};
+
+          > * {
+            ${({ theme, gutterSize }) =>
+              gutterSizes({ theme, gutterSize, direction: 'left' })};
+            ${({ theme, gutterSize }) =>
+              gutterSizes({ theme, gutterSize, direction: 'top' })};
+          }
+        `}
     `}
 
   ${({ direction }) =>
