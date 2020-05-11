@@ -6,7 +6,7 @@ export { default as Modal } from './Modal';
 export { default as Card } from './Card';
 export { default as Dropdown } from './Dropdown';
 export { default as Avatar } from './Avatar';
-export { default as DataTable } from './DataTable';
+// export { default as DataTable } from './DataTable';
 export { default as SegmentedControls } from './SegmentedControls';
 export * from './Pills';
 // export * from './Layout';
