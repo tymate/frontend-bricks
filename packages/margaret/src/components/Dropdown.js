@@ -108,7 +108,9 @@ const Dropdown = (
     <Wrapper ref={containerRef} style={{ ...(wrapperStyle || {}) }}>
       <InputButton
         type="button"
-        onClick={() => {
+        onClick={e => {
+          e.preventDefault();
+
           if (disabled) {
             return;
           }
