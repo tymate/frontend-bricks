@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { media, ButtonReset, InlineList } from '../ui';
 
 export const PillsNavBar = styled.nav`
@@ -83,14 +82,8 @@ Pills.defaultProps = {
   gutterSize: 0.5,
 };
 
-export const Pill = ({ to, onClick, isActive, ...props }) => (
+export const Pill = ({ onClick, isActive, ...props }) => (
   <PillItem>
-    <PillButton
-      as={Boolean(to) && NavLink}
-      to={to}
-      className={isActive && 'active'}
-      onClick={onClick}
-      {...props}
-    />
+    <PillButton className={isActive && 'active'} onClick={onClick} {...props} />
   </PillItem>
 );

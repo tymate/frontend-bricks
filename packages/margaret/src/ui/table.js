@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const TableWrapper = styled.div`
   border-radius: 8px;
@@ -83,7 +82,7 @@ const trStyles = `
   }
 `;
 
-const LinkTr = styled(Link)`
+const LinkTr = styled.div`
   ${trStyles};
   text-decoration: none;
   color: inherit;

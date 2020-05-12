@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { ButtonReset } from './base';
 
 const MAIN_SIDEBAR_WIDTH = 260;
@@ -35,7 +34,7 @@ export const SidebarContent = styled.div`
   padding-top: 0;
 `;
 
-export const SidebarNavLink = styled(NavLink)`
+export const SidebarNavLink = styled.div`
   display: block;
   color: ${({ theme }) => theme.sidebarTextColor};
   padding: ${({ theme }) => theme.spacing()} 0;

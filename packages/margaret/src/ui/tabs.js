@@ -54,5 +54,3 @@ export const TabNavButton = styled(ButtonReset)`
     width: 100%;
   `}
 `;
-
-export const TabNavLink = styled(TabNavButton)``.withComponent(RawLink);

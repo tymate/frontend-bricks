@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { media } from './utils';
-import { Link } from 'react-router-dom';
 import { keys } from 'lodash';
 
 export const Legend = styled.span`
@@ -309,11 +308,6 @@ export const ButtonReset = styled.button`
     css`
       width: 100%;
     `}
-`;
-
-export const RawLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
 `;
 
 export const Container = styled.div`

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { ButtonReset } from '../ui';
 import Spinner from './Spinner';
 
@@ -100,12 +99,8 @@ const ButtonWrapper = styled(ButtonReset)`
   }
 `;
 
-const Button = ({ isLoading, children, icon, as, ...props }) => (
-  <ButtonWrapper
-    {...props}
-    as={Boolean(props.to) ? Link : Boolean(as) ? as : null}
-    disabled={props.disabled || isLoading}
-  >
+const Button = ({ isLoading, children, icon, ...props }) => (
+  <ButtonWrapper disabled={props.disabled || isLoading} {...props}>
     {isLoading && <Spinner variant="button" />}
     {!isLoading && icon}
     {children}
