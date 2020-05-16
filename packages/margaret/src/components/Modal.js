@@ -36,14 +36,13 @@ const StyledModal = styled(ReactModal)`
     css`
       min-width: 800px;
     `}
+
   ${props =>
     props.size === 'big' &&
     css`
       width: 1100px;
     `}
 `;
-
-ReactModal.setAppElement('#root');
 
 export const CloseModalTriggerButton = styled(ButtonReset)`
   font-size: 1.5em;
@@ -104,8 +103,13 @@ const Modal = ({
   background,
   overflow,
   size,
+  appElement,
 }) => {
   useEffect(() => {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     if (isOpen) {
       document.documentElement.style.overflowY = 'hidden';
     } else {
@@ -113,6 +117,10 @@ const Modal = ({
     }
 
     return () => {
+      if (typeof document === 'undefined') {
+        return;
+      }
+
       document.documentElement.style.overflowY = 'auto';
     };
   }, [isOpen]);
@@ -134,6 +142,11 @@ const Modal = ({
         },
         content: { overflow },
       }}
+      appElement={
+        typeof appElement === 'string'
+          ? document.querySelector(appElement)
+          : appElement
+      }
     >
       <Content variant={variant}>
         {title && <ModalTitle>{title}</ModalTitle>}
@@ -152,6 +165,7 @@ const Modal = ({
 
 Modal.defaultProps = {
   background: 'rgba(0, 0, 0, 0.8)',
+  appElement: '#root',
 };
 
 Modal.propTypes = {
@@ -165,6 +179,10 @@ Modal.propTypes = {
   size: PropTypes.oneOf(['medium', 'big', 'full']),
   variant: PropTypes.oneOf(['fullscreen']),
   background: PropTypes.string,
+  appElement: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Element),
+  ]),
 };
 
 export default Modal;
