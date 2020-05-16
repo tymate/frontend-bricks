@@ -179,10 +179,7 @@ Modal.propTypes = {
   size: PropTypes.oneOf(['medium', 'big', 'full']),
   variant: PropTypes.oneOf(['fullscreen']),
   background: PropTypes.string,
-  appElement: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(Element),
-  ]),
+  appElement: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
 };
 
 export default Modal;
