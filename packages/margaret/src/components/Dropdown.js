@@ -79,7 +79,11 @@ const Dropdown = (
     isOpen,
   }));
 
-  const close = () => setIsOpen(false);
+  const close = () => {
+    setIsOpen(false);
+    setMenuIsVisible(false);
+  };
+
   const open = () => {
     setMenuIsVisible(true);
     setIsOpen(true);
