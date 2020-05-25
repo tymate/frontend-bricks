@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import styled from 'styled-components';
 import { ButtonReset } from '../ui';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const PopoverInner = styled(motion.div)`
   position: absolute;
@@ -67,7 +67,6 @@ const Dropdown = (
 ) => {
   const containerRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
 
   useImperativeHandle(ref, () => ({
     close: () => {
@@ -81,11 +80,9 @@ const Dropdown = (
 
   const close = () => {
     setIsOpen(false);
-    setMenuIsVisible(false);
   };
 
   const open = () => {
-    setMenuIsVisible(true);
     setIsOpen(true);
   };
 
@@ -124,28 +121,33 @@ const Dropdown = (
         {typeof trigger === 'function' ? trigger(isOpen) : trigger}
       </InputButton>
 
-      <PopoverInner
-        initial={{
-          opacity: 0,
-          transform:
-            verticalPosition === 'top'
-              ? 'translateY(10px)'
-              : 'translateY(-10px)',
-        }}
-        transition={{ ease: 'easeOut', duration: 0.2 }}
-        onAnimationStart={() => setMenuIsVisible(true)}
-        onAnimationComplete={handleAnimationComplete}
-        animate={{
-          opacity: isOpen ? 1 : 0,
-          transform: isOpen
-            ? 'translateY(0px)'
-            : verticalPosition === 'top'
-            ? 'translateY(10px)'
-            : 'translateY(-10px)',
-        }}
-      >
-        {menuIsVisible && children}
-      </PopoverInner>
+      <AnimatePresence>
+        {isOpen && (
+          <PopoverInner
+            transition={{ ease: 'easeOut', duration: 0.2 }}
+            initial={{
+              opacity: 0,
+              transform:
+                verticalPosition === 'top'
+                  ? 'translateY(10px)'
+                  : 'translateY(-10px)',
+            }}
+            animate={{
+              opacity: 1,
+              transform: 'translateY(0px)',
+            }}
+            exit={{
+              opacity: 0,
+              transform:
+                verticalPosition === 'top'
+                  ? 'translateY(10px)'
+                  : 'translateY(-10px)',
+            }}
+          >
+            {children}
+          </PopoverInner>
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 };
