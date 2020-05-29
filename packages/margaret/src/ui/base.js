@@ -163,18 +163,18 @@ export const Stack = styled(Box)`
       align-items: ${({ alignX, alignY }) =>
         direction?.default === 'row'
           ? typeof alignY === 'object'
-            ? alignY[breakpoint]
+            ? alignY?.default
             : alignY
           : typeof alignX === 'object'
-          ? alignX[breakpoint]
+          ? alignX?.default
           : alignX};
       justify-content: ${({ alignX, alignY }) =>
         direction?.default === 'row'
           ? typeof alignX === 'object'
-            ? alignX[breakpoint]
+            ? alignX?.default
             : alignX
           : typeof alignY === 'object'
-          ? alignY[breakpoint]
+          ? alignY?.default
           : alignY};
 
       > * + * {
