@@ -161,9 +161,21 @@ export const Stack = styled(Box)`
     css`
       flex-direction: ${({ direction }) => direction?.default};
       align-items: ${({ alignX, alignY }) =>
-        direction?.default === 'row' ? alignY : alignX};
+        direction?.default === 'row'
+          ? typeof alignY === 'object'
+            ? alignY[breakpoint]
+            : alignY
+          : typeof alignX === 'object'
+          ? alignX[breakpoint]
+          : alignX};
       justify-content: ${({ alignX, alignY }) =>
-        direction?.default === 'row' ? alignX : alignY};
+        direction?.default === 'row'
+          ? typeof alignX === 'object'
+            ? alignX[breakpoint]
+            : alignX
+          : typeof alignY === 'object'
+          ? alignY[breakpoint]
+          : alignY};
 
       > * + * {
         ${({ theme, gutterSize }) =>
