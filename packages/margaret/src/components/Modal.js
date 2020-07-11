@@ -126,7 +126,7 @@ const Modal = ({
   }, [isOpen]);
 
   useEffect(() => {
-    ReactModal.setElement(appElement);
+    ReactModal.setAppElement(appElement);
   }, []);
 
   const overlayStyles = {
