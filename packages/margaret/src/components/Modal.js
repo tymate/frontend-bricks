@@ -125,6 +125,10 @@ const Modal = ({
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    ReactModal.setElement(appElement);
+  }, []);
+
   const overlayStyles = {
     zIndex: 2147483646,
     backgroundColor: background,
@@ -142,11 +146,6 @@ const Modal = ({
         },
         content: { overflow },
       }}
-      appElement={
-        typeof appElement === 'string'
-          ? document.querySelector(appElement)
-          : appElement
-      }
     >
       <Content variant={variant}>
         {title && <ModalTitle>{title}</ModalTitle>}
