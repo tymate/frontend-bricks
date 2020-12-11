@@ -1,13 +1,19 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Spinner from './Spinner';
 
-<Meta title="Spinner" component={Spinner} />
+<Meta
+  title="Design System/Spinner"
+  component={Spinner}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
 
 # Spinner
 
+<Props of={Spinner} />
 ## Default
+
 <Preview>
   <Story name="DefaultSpinner">
     <Spinner />
@@ -15,39 +21,46 @@ import Spinner from './Spinner';
 </Preview>
 
 ## Alternatives
+
 <Preview>
   <Story name="AlternateSpinners">
-    <Spinner loader={select('Loader', {
-      'ball-pulse': 'ball-pulse',
-      'ball-pulse-sync': 'ball-pulse-sync',
-      'ball-scale': 'ball-scale',
-      'ball-scale-random': 'ball-scale-random',
-      'ball-rotate': 'ball-rotate',
-      'ball-clip-rotate': 'ball-clip-rotate',
-      'ball-clip-rotate-pulse': 'ball-clip-rotate-pulse',
-      'ball-clip-rotate-multiple': 'ball-clip-rotate-multiple',
-      'ball-scale-ripple': 'ball-scale-ripple',
-      'ball-scale-ripple-multiple': 'ball-scale-ripple-multiple',
-      'ball-beat': 'ball-beat',
-      'ball-scale-multiple': 'ball-scale-multiple',
-      'ball-triangle-path': 'ball-triangle-path',
-      'ball-pulse-rise': 'ball-pulse-rise',
-      'ball-grid-beat': 'ball-grid-beat',
-      'ball-grid-pulse': 'ball-grid-pulse',
-      'ball-spin-fade-loader': 'ball-spin-fade-loader',
-      'ball-spin-loader': 'ball-spin-loader',
-      'ball-zig-zag': 'ball-zig-zag',
-      'ball-zig-zag-deflect': 'ball-zig-zag-deflect',
-      'line-scale': 'line-scale',
-      'line-scale-random': 'line-scale-random',
-      'line-scale-pulse-out': 'line-scale-pulse-out',
-      'line-scale-pulse-out-rapid': 'line-scale-pulse-out-rapid',
-      'line-spin-fade-loader': 'line-spin-fade-loader',
-      'triangle-skew-spin': 'triangle-skew-spin',
-      'square-spin': 'square-spin',
-      'pacman': 'pacman',
-      'cube-transition': 'cube-transition',
-      'semi-circle-spin': 'semi-circle-spin'
-    }, 'ball-pulse')} />
+    <Spinner
+      loader={select(
+        'Loader',
+        {
+          'ball-pulse': 'ball-pulse',
+          'ball-pulse-sync': 'ball-pulse-sync',
+          'ball-scale': 'ball-scale',
+          'ball-scale-random': 'ball-scale-random',
+          'ball-rotate': 'ball-rotate',
+          'ball-clip-rotate': 'ball-clip-rotate',
+          'ball-clip-rotate-pulse': 'ball-clip-rotate-pulse',
+          'ball-clip-rotate-multiple': 'ball-clip-rotate-multiple',
+          'ball-scale-ripple': 'ball-scale-ripple',
+          'ball-scale-ripple-multiple': 'ball-scale-ripple-multiple',
+          'ball-beat': 'ball-beat',
+          'ball-scale-multiple': 'ball-scale-multiple',
+          'ball-triangle-path': 'ball-triangle-path',
+          'ball-pulse-rise': 'ball-pulse-rise',
+          'ball-grid-beat': 'ball-grid-beat',
+          'ball-grid-pulse': 'ball-grid-pulse',
+          'ball-spin-fade-loader': 'ball-spin-fade-loader',
+          'ball-spin-loader': 'ball-spin-loader',
+          'ball-zig-zag': 'ball-zig-zag',
+          'ball-zig-zag-deflect': 'ball-zig-zag-deflect',
+          'line-scale': 'line-scale',
+          'line-scale-random': 'line-scale-random',
+          'line-scale-pulse-out': 'line-scale-pulse-out',
+          'line-scale-pulse-out-rapid': 'line-scale-pulse-out-rapid',
+          'line-spin-fade-loader': 'line-spin-fade-loader',
+          'triangle-skew-spin': 'triangle-skew-spin',
+          'square-spin': 'square-spin',
+          pacman: 'pacman',
+          'cube-transition': 'cube-transition',
+          'semi-circle-spin': 'semi-circle-spin',
+        },
+        'ball-pulse',
+      )}
+    />
   </Story>
 </Preview>

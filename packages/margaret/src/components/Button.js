@@ -2,10 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ButtonReset } from '../ui';
+import { StyledButtonReset } from '../ui';
 import Spinner from './Spinner';
 
-const ButtonWrapper = styled(ButtonReset)`
+const ButtonWrapper = styled(StyledButtonReset)`
   display: flex;
   align-items: center;
   justify-content: center;

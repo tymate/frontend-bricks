@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { MdSearch, MdHighlightOff } from 'react-icons/md';
-import { ButtonReset } from '../ui/base';
+import { StyledButtonReset } from '../ui/base';
 import { SearchInput } from '../ui/forms';
 
 const CancelableInputContainer = styled.div`
   position: relative;
   display: inline-block;
 
-  > ${ButtonReset} {
+  > ${StyledButtonReset} {
     position: absolute;
     right: 0;
     top: 50%;
@@ -72,13 +72,13 @@ class Search extends Component {
           placeholder={placeholder}
         />
 
-        <ButtonReset
+        <StyledButtonReset
           phantom
           style={{ opacity: Boolean(value) ? 1 : 0 }}
           onClick={onClear}
         >
           <MdHighlightOff size="20" />
-        </ButtonReset>
+        </StyledButtonReset>
       </CancelableInputContainer>
     );
   }

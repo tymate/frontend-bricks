@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
 import SegmentedControls from './SegmentedControls';
-import { Stack } from '../ui';
+import { Stack } from './Basics';
 
 <Meta
   title="Design System/SegmentedControls"
   component={SegmentedControls}
-  parameters={{previewTabs: {canvas: {hidden: true}}}}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
 />
 
 # SegmentedControls
@@ -19,14 +19,14 @@ import { Stack } from '../ui';
     {() => {
       const [value, setValue] = useState('bar');
       return (
-        <SegmentedControls 
-          value={value} 
+        <SegmentedControls
+          value={value}
           onSelect={setValue}
           options={[
-            {label:'Foo', value:'foo'},
-            {label:'Bar', value:'bar'},
-            {label:'Baz', value:'baz', disabled: true},
-          ]} 
+            { label: 'Foo', value: 'foo' },
+            { label: 'Bar', value: 'bar' },
+            { label: 'Baz', value: 'baz', disabled: true },
+          ]}
         />
       );
     }}

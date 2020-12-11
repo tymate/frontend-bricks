@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import { MdClose } from 'react-icons/md';
-import { ButtonReset } from '../ui';
+import { StyledButtonReset } from '../ui';
 
 const StyledModal = styled(ReactModal)`
   position: absolute;
@@ -45,7 +45,7 @@ const StyledModal = styled(ReactModal)`
 
 ReactModal.setAppElement(document.getElementById('root'));
 
-export const CloseModalTriggerButton = styled(ButtonReset)`
+export const CloseModalTriggerButton = styled(StyledButtonReset)`
   font-size: 1.5em;
   position: absolute;
   z-index: 2;

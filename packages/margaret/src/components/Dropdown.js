@@ -6,7 +6,7 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import styled from 'styled-components';
-import { ButtonReset } from '../ui';
+import { StyledButtonReset } from '../ui';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PopoverInner = styled(motion.div)`
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const InputButton = styled(ButtonReset)`
+const InputButton = styled(StyledButtonReset)`
   text-align: left;
   width: 100%;
   display: block;

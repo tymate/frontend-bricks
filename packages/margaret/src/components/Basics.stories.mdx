@@ -1,0 +1,27 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Card } from './';
+import { MyCardFooter } from '../sandbox';
+import { Stack, ButtonReset, List } from './Basics';
+
+<Meta
+  title="Basics"
+  component={Stack}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Basics
+
+## ButtonReset
+
+No style button
+
+<Props of={ButtonReset} />
+
+## Stack
+
+<Props of={Stack} />
+
+## List
+
+<Props of={List} />

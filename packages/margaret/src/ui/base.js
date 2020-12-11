@@ -29,7 +29,6 @@ export const gutterSizes = ({ theme, gutterSize, direction }) => {
     })};
 
     ${keys(gutterSize)
-      .map(f => console.log(f) || f)
       .filter(key => key !== 'default')
       .map(
         breakpoint => media[breakpoint]`
@@ -147,7 +146,7 @@ export const Box = styled.div`
     `}
 `;
 
-export const Stack = styled(Box)`
+export const StyledStack = styled(Box)`
   display: flex;
   
   ${({ direction }) =>
@@ -285,24 +284,11 @@ export const Stack = styled(Box)`
     `}
 `;
 
-Stack.defaultProps = {
-  direction: 'row',
-  gutterSize: 'none',
-  alignX: 'flex-start',
-  alignY: 'flex-start',
-};
-
-export const List = styled(Stack)`
+export const StyledList = styled(StyledStack)`
   list-style-type: none;
 `;
 
-List.defaultProps = {
-  as: 'ul',
-  margin: 0,
-  padding: 0,
-};
-
-export const InlineList = styled(List)`
+export const InlineList = styled(StyledList)`
   flex-wrap: wrap;
 `;
 
@@ -312,7 +298,7 @@ InlineList.defaultProps = {
   marginBottom: 0,
 };
 
-export const Subtitle = styled(Stack)`
+export const Subtitle = styled(StyledStack)`
   font-size: 1.189em;
   font-weight: 600;
 `;
@@ -322,7 +308,7 @@ Subtitle.defaultProps = {
   marginBottom: 0.5,
 };
 
-export const ButtonReset = styled.button`
+export const StyledButtonReset = styled.button`
   border: 0;
   background-color: transparent;
   text-decoration: none;
@@ -333,8 +319,8 @@ export const ButtonReset = styled.button`
   font-size: inherit;
   font-family: inherit;
 
-  ${props =>
-    props.size === 'full' &&
+  ${({ size }) =>
+    size === 'full' &&
     css`
       width: 100%;
     `}
@@ -463,54 +449,6 @@ export const Icon = styled.div`
   + * {
     margin-left: ${({ theme }) => theme.spacing(0.5)};
   }
-`;
-
-export const MediaImage = styled.div`
-  display: flex;
-`;
-
-export const MediaBody = styled.div`
-  flex: 1;
-  padding-left: ${({ theme }) => theme.spacing()};
-
-  ${props =>
-    props.variant === 'compact' &&
-    css`
-      padding-left: ${({ theme }) => theme.spacing(0.5)};
-    `};
-`;
-
-export const Media = styled.div`
-  display: flex;
-  align-items: flex-start;
-
-  ${({ variant, verticalAlign }) =>
-    (variant === 'center' || verticalAlign === 'center') &&
-    `
-      align-items: center;
-    `};
-
-  ${({ isMargedBottom, theme }) =>
-    isMargedBottom &&
-    `
-      margin-bottom: ${({ theme }) => theme.spacing(2)};
-    `};
-
-  ${({ size, theme }) =>
-    size === 'tight' &&
-    `
-      ${MediaBody} {
-        padding-left: ${({ theme }) => theme.spacing(0.5)};
-      }
-    `};
-
-  ${({ variant }) =>
-    variant === 'inverted' &&
-    `
-      ${MediaBody} {
-        padding-left: 0;
-      }
-    `}
 `;
 
 export const TitleAndAction = styled.div`
