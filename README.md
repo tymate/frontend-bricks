@@ -1,4 +1,3 @@
-# Initial page
+# This repo has moved
 
-https://tymate.dev
-
+It now lives at https://github.com/tymate/margaret. See you there!
